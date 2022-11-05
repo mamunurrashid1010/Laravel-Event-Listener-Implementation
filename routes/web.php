@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\demoEvent;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+/**
+ *  sent notification using event
+ */
+Route::get('/sendNotification',function (){
+    $user_id=2;
+    demoEvent::dispatch($user_id);
 });
