@@ -28,9 +28,9 @@ class demoListener
      */
     public function handle(demoEvent $event)
     {
-        $user = User::find($event->user_id)->toArray();
+        $user = User::find($event->user_id);
         $data=['name'=>$user->name, 'bodyData'=>'Thanks for using our application'];
-        Mail::send('emails.mailEvent',$data, function($message) use ($user) {
+        Mail::send('mail',$data, function($message) use ($user) {
             $message->to($user['email']);
             $message->subject('Event Testing');
         });
